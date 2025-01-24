@@ -1,0 +1,25 @@
+name: CD Pipeline
+
+on:
+  repository_dispatch:
+    types: [trigger-cd]
+
+jobs:
+  deploy:
+    name: Deploy Docker Container to AWS EC2
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH into EC2 and deploy container
+        uses: appleboy/ssh-action@v0.1.9
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          port: 22
+          script: |
+            echo "Pulling the latest Docker image..."
+            docker pull adarsh9633/gitlab-cicd:latest
+            echo "Stopping and removing any existing container..."
+            docker rm -f app-container || true
+            echo "Starting a new container..."
+            docker run -d --name app-container -p 80:80 adarsh9633/gitlab-cicd:latest
