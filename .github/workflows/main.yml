@@ -30,7 +30,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v2
         with:
-          images: your-dockerhub-username/your-image-name
+          images: adarsh9633/adarsh9633/gitlab-cicd
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
