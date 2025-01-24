@@ -22,4 +22,4 @@ jobs:
             echo "Stopping and removing any existing container..."
             docker rm -f app-container || true
             echo "Starting a new container..."
-            docker run -d --name app-container -p 80:80 adarsh9633/gitlab-cicd:latest
+            docker run -d --name app-container -p 80:80 adarsh9633/gitlab-cicd:main
