@@ -18,7 +18,7 @@ jobs:
           port: 22
           script: |
             echo "Pulling the latest Docker image..."
-            docker pull adarsh9633/gitlab-cicd:latest
+            docker pull adarsh9633/gitlab-cicd:main
             echo "Stopping and removing any existing container..."
             docker rm -f app-container || true
             echo "Starting a new container..."
